@@ -1,10 +1,10 @@
 # BMEN-600-Project
 
 ## Team 3
-Matthew Christoffersen
-Dylan Lam
-Yohan Min
-Perpetual Ogedegbe
+Matthew Christoffersen  
+Dylan Lam  
+Yohan Min  
+Perpetual Ogedegbe  
 
 ## Candiate #1:
 
