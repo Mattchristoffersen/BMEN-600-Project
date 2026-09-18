@@ -5,9 +5,17 @@
 ##team members present: 4 
 
 
+Candiate #1:
 
+Biomedical problem: Deep sleep (N3/slow-wave) and REM sleep are thought to decline with age, and this loss is linked to worse memory consolidation, mood regulation, and metabolic health in older adults. If true, automatic sleep-stage classifiers (usually trained/validated mostly on younger subjects) may perform worse in older adults — whose EEG shows lower-amplitude slow waves and less-distinct REM signatures — meaning current tools could systematically misclassify or underdetect deep/REM sleep in exactly the population where tracking it matters most (e.g., for dementia or cardiovascular risk screening).
 
+Question: Does the time spent in deep sleep and REM sleep decline with age, and does automatic sleep-stage scoring work as well in older adults? 
 
+Data: Sleep-EDF Expanded (PhysioNet): overnight sleep recordings from healthy adults aged 25–101, scored by experts. 
+
+Biggest uncertainty: : there are fewer participants at the oldest ages.
+
+Data set: https://physionet.org/content/sleep-edfx/1.0.0/
 
 
 
@@ -23,3 +31,10 @@ Data:  50 stroke survivors (ages 19–85) and 138 healthy adults (ages 21–86).
 Biggest uncertainty: whether any difference you find comes from the stroke itself or just from walking slower. 
 
 Data set: https://springernature.figshare.com/collections/A_full-body_motion_capture_gait_dataset_of_138_able-bodied_adults_across_the_life_span_and_50_stroke_survivors/6503791/1
+
+
+
+
+
+
+We are currently leaning towards..... 
