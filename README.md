@@ -55,7 +55,7 @@ All tests use one value per participant (strides averaged first). Speed comes fr
 Stroke can damage the neural pathways that coordinate reciprocal muscle activation, so survivors may show abnormal co-contraction (agonist/antagonist muscles firing together) and mistimed activation of thigh and shank muscles on the affected side during gait — contributing to stiff, inefficient, unsafe walking. The open question is whether this reflects stroke's direct effect on motor control, or is just a byproduct of walking slower (since speed alone affects co-contraction even in healthy adults).
 
 ### Research question
-Compared with age-matched healthy adults, do stroke survivors show more co-contraction and altered activation timing of the thigh and shin muscles on their affected side during walking?
+Compared with age-matched able-bodied adults, do stroke survivors show more co-contraction and altered activation timing of knee and ankle muscles on the paretic side during walking, and do these differences persist after accounting for walking speed?
 
 ### Biggest uncertainty
 Whether any difference we find comes from the stroke itself or just from walking slower.
