@@ -8,6 +8,16 @@ Perpetual Ogedegbe
 
 ## Project: Muscle activity during walking after stroke
 
+### Problem statement
+After a stroke, damage to descending motor pathways can disrupt the normal "one muscle on, its opposite off" pattern of walking. Muscles on the affected (paretic) side may fire together (co-contraction) or at the wrong time in the gait cycle, which stiffens the joints, raises the energy cost of walking and may increase fall risk. Rehabilitation often aims to reduce this abnormal activity. However, stroke survivors also walk more slowly, and slower walking by itself changes muscle activation, even in healthy people. If we can't separate the two, we can't tell whether an abnormal pattern is a direct result of the stroke (and worth targeting in therapy) or simply a side effect of walking slowly.
+
+This project uses a public gait dataset (47 stroke survivors and 111 able-bodied adults with EMG) to measure co-contraction and activation timing of knee and ankle muscle pairs during walking. We will then test whether the differences between groups remain after accounting for walking speed.
+
+### Hypotheses
+1. **Co-contraction:** The paretic leg shows more co-contraction at the knee and ankle than age-matched able-bodied adults and than the non-paretic leg.
+2. **Timing:** Paretic-side muscles are active for a larger share of the gait cycle, with onsets and offsets that differ from able-bodied adults.
+3. **Speed:** These differences are still present after controlling for walking speed.
+
 ### Biomedical problem
 Stroke can damage the neural pathways that coordinate reciprocal muscle activation, so survivors may show abnormal co-contraction (agonist/antagonist muscles firing together) and mistimed activation of thigh and shank muscles on the affected side during gait — contributing to stiff, inefficient, unsafe walking. The open question is whether this reflects stroke's direct effect on motor control, or is just a byproduct of walking slower (since speed alone affects co-contraction even in healthy adults).
 
@@ -58,6 +68,46 @@ Possible agonist/antagonist pairs: VL or RF vs. BF or ST (knee) and TA vs. GAS (
 - [ ] How the stroke files mark the affected (paretic) side.
 - [ ] Per-participant walking speed (Supplementary Table 5 of the paper), needed to account for speed.
 - [ ] Stroke data were not screened for outliers in the MAT files (the authors did this for able-bodied data only).
+
+## Analysis plan: what we will do with the data
+
+**1. Choose participants**
+- Stroke: the 47 participants with EMG. Analyze the paretic and non-paretic legs separately.
+- Able-bodied: the 111 with EMG. To age-match, pair each stroke participant with the closest-in-age able-bodied adult (or restrict to the same age range). Use the average of the left and right legs.
+- Sensitivity check: rerun the analysis without the 3 stroke participants who needed hand support (TVC48, TVC51, TVC54).
+
+**2. Load and organize the EMG**
+- Use the stride-normalized EMG envelopes (1000 points = one gait cycle, from heel strike to the next heel strike).
+- Muscle pairs:
+  - Knee: vastus lateralis vs. biceps femoris, and vastus lateralis vs. semitendinosus.
+  - Ankle: tibialis anterior vs. gastrocnemius. This needs the MAT files if the Excel file has no TA data.
+- Use toe-off events to split each stride into stance and swing.
+
+**3. Calculate outcomes for every stride, then average per participant**
+- **Co-contraction index (CCI)**, using the Falconer & Winter (1985) method: `CCI = 2 × Σ min(A, B) / Σ (A + B) × 100`, where A and B are the two muscles' envelopes. Calculate it for the whole gait cycle and separately for stance and swing.
+- **Activation timing:** count a muscle as "on" when its envelope is above a set threshold (e.g., 25% of its maximum). Record onset, offset and the % of the gait cycle it is active.
+- **Overall pattern:** plot the average envelope for each group over the gait cycle so differences can be seen.
+
+**4. Handle walking speed (our biggest uncertainty)**
+- **Within-person comparison:** compare the paretic and non-paretic legs of the same stroke survivor. Both legs walk at the same speed, so speed can't explain a difference between them.
+- **Statistical control:** fit a regression model, CCI ~ group + walking speed + age. Speed comes from Supplementary Table 5 of the paper.
+- **Speed-matched subset:** compare stroke survivors only with able-bodied adults who walked at similar speeds. This works only if enough slow able-bodied walkers exist, so we'll check the overlap first.
+
+**5. Statistics**
+- Each participant counts once: average their strides before testing.
+- Stroke vs. able-bodied: Mann–Whitney U test (or the regression model above).
+- Paretic vs. non-paretic: Wilcoxon signed-rank test.
+- Several muscle pairs are tested, so adjust p-values (Holm correction).
+
+**6. Figures**
+- Average EMG envelopes over the gait cycle for each group and leg (mean ± SD shading).
+- Box plots of CCI by group and leg.
+- Scatter plot of CCI vs. walking speed, colored by group. This is the key figure for the speed question.
+
+**Limitations to acknowledge**
+- EMG is scaled to each person's own maximum, not to a maximal contraction. CCI therefore describes the *overlap* of two muscles' activity, not absolute muscle effort.
+- All stroke participants were within 5 months of their stroke, so the results may not apply to chronic stroke.
+- Able-bodied adults walked only at their own comfortable speed, so few may walk as slowly as the stroke group.
 
 ## Other candidate considered (not chosen)
 
