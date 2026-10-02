@@ -6,6 +6,29 @@ Dylan Lam
 Yohan Min  
 Perpetual Ogedegbe  
 
+## Project decision
+**GO**: we are proceeding with this research question and dataset. First check: confirm that tibialis anterior EMG is available in the file format we use.
+
+## Team plan
+| Task | Lead | Collaborators and reviewers | What does the whole team need to understand? |
+|---|---|---|---|
+| Literature review and background research | Matthew | Perpetual (independent search for missing evidence and perspectives); Yohan (reviewer) | Why co-contraction after stroke matters clinically; what earlier studies found; why walking speed is a confounder |
+| Dataset interpretation | Matthew | Yohan (collaborator, since he will preprocess the data); Dylan (reviewer) | Who is in each group; which muscles were recorded; how EMG was processed and normalized; missing EMG; how the paretic side is labelled |
+| Dataset cleaning / preprocessing | Yohan | Matthew (participant selection rules); Perpetual (reviewer) | Inclusion/exclusion choices; how age-matching was done; how strides are averaged per participant |
+| Analysis (co-contraction, timing, statistics) | Dylan | Yohan (collaborator); Perpetual (reviewer) | How the co-contraction index and on/off timing are calculated; the three ways we handle walking speed; which tests we use and why |
+| Validation and evaluation | Perpetual | Matthew (compares values with the literature); Dylan (reviewer) | How results were checked: recalculating CCI by hand for a few participants, plotting individual participants, testing different on/off thresholds, rerunning without the 3 assisted participants |
+| Interpretation | Matthew | Perpetual and Dylan (collaborators); Yohan (reviewer) | Whether differences remain after controlling for speed; what that means for rehabilitation; limitations |
+| Documentation and reproducibility | Dylan | Everyone documents their own part; Yohan (reviewer: reruns the code from the README on a fresh computer) | How to rerun the full analysis from the raw files |
+
+### Decision-making
+- **Whole team:** research question, muscle pairs, how we handle walking speed, final interpretation and conclusions.
+- **Lead + reviewer:** technical choices within a task, e.g., the on/off threshold, the age-matching method and the choice of statistical test.
+- **Individual lead:** day-to-day organization of their task and code/file structure within it.
+
+### How we check each other's work
+- Every task has a reviewer who is not the lead.
+- Code changes go to GitHub with a short description, and the reviewer looks over them before we rely on the results.
+
 ## Project: Muscle activity during walking after stroke
 
 ### Problem statement
