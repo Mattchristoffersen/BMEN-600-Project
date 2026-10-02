@@ -41,6 +41,16 @@ This project uses a public gait dataset (47 stroke survivors and 111 able-bodied
 2. **Timing:** Paretic-side muscles are active for a larger share of the gait cycle, with onsets and offsets that differ from able-bodied adults.
 3. **Speed:** These differences are still present after controlling for walking speed.
 
+#### How each hypothesis is tested
+| Hypothesis | Outcome measure | Muscles / pairs | Comparison | Statistical test | Supported if… |
+|---|---|---|---|---|---|
+| **H1a** Co-contraction vs. able-bodied | CCI (Falconer & Winter): whole gait cycle, stance, swing | Knee: VL–BF, VL–ST · Ankle: TA–GAS | Paretic leg vs. age-matched able-bodied (mean of L/R legs) | Mann–Whitney U, Holm-corrected | Paretic CCI is higher |
+| **H1b** Co-contraction vs. other leg | Same as H1a | Same as H1a | Paretic vs. non-paretic leg, same stroke survivor | Wilcoxon signed-rank, Holm-corrected | Paretic CCI is higher |
+| **H2** Activation timing | Onset, offset and % of gait cycle active (envelope > threshold, e.g. 25% of max) | VL, BF, ST, TA, GAS (each muscle) | Paretic vs. able-bodied; paretic vs. non-paretic | Mann–Whitney U / Wilcoxon signed-rank, Holm-corrected | Paretic muscles are active longer, with shifted onsets/offsets |
+| **H3** Speed | CCI and % active (from H1–H2) | Same as above | (a) Paretic vs. non-paretic leg (same speed by design)<br>(b) All participants, adjusting for speed<br>(c) Speed-matched subset | (a) Wilcoxon signed-rank<br>(b) Regression: outcome ~ group + speed + age<br>(c) Mann–Whitney U | Group difference remains after speed is accounted for (e.g. group term still significant in (b)) |
+
+All tests use one value per participant (strides averaged first). Speed comes from Supplementary Table 5 of the paper.
+
 ### Biomedical problem
 Stroke can damage the neural pathways that coordinate reciprocal muscle activation, so survivors may show abnormal co-contraction (agonist/antagonist muscles firing together) and mistimed activation of thigh and shank muscles on the affected side during gait — contributing to stiff, inefficient, unsafe walking. The open question is whether this reflects stroke's direct effect on motor control, or is just a byproduct of walking slower (since speed alone affects co-contraction even in healthy adults).
 
