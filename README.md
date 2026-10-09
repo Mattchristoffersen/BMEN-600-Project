@@ -350,23 +350,5 @@ Possible agonist/antagonist pairs: VL or RF vs. BF or ST (knee) and TA vs. GAS (
 - Every task has a reviewer who is not the lead.
 - Code changes go to GitHub with a short description, and the reviewer looks over them before we rely on the results.
 
----
-
-## Other candidate considered (not chosen)
-<details>
-<summary>Sleep stages and age (Sleep-EDF Expanded)</summary>
-
-### Biomedical problem
-Deep sleep (N3/slow-wave) and REM sleep are thought to decline with age, and this loss is linked to worse memory consolidation, mood regulation, and metabolic health in older adults. If true, automatic sleep-stage classifiers (usually trained/validated mostly on younger subjects) may perform worse in older adults — whose EEG shows lower-amplitude slow waves and less-distinct REM signatures — meaning current tools could systematically misclassify or underdetect deep/REM sleep in exactly the population where tracking it matters most (e.g., for dementia or cardiovascular risk screening).
-
-### Research question
-Does the time spent in deep sleep and REM sleep decline with age, and does automatic sleep-stage scoring work as well in older adults?
-
-### Dataset
-Sleep-EDF Expanded (PhysioNet): overnight sleep recordings from healthy adults aged 25–101, scored by experts.  
-Link: https://physionet.org/content/sleep-edfx/1.0.0/
-
-### Biggest uncertainty
-There are fewer participants at the oldest ages.
 
 </details>
