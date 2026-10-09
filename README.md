@@ -18,6 +18,7 @@ python src/download_data.py        # ~9 GB from Figshare into data/raw/ (skips f
 python src/build_participants.py   # -> data/metadata/participants.csv
 python src/compute_outcomes.py     # -> results/tables/outcomes_per_leg.csv, strides_per_leg.csv
 python src/preliminary_check.py    # -> results/tables/table1_*.csv, table2_*.csv, results/figures/fig1_*.png
+python src/gait_comparison.py      # -> results/tables/fig2_points.csv, results/figures/fig2_*.png
 ```
 Run the commands from the repository root. The last three scripts take a few seconds each.
 
@@ -29,6 +30,7 @@ Run the commands from the repository root. The last three scripts take a few sec
 | `src/build_participants.py` | One table of participants: age, sex, body size, stroke details, walking speed, EMG availability |
 | `src/compute_outcomes.py` | Co-contraction index (whole stride, stance, swing) and % of stride active, averaged per leg |
 | `src/preliminary_check.py` | Midterm check: sample and data quality (Table 1), CCI by group (Table 2), Figure 1 |
+| `src/gait_comparison.py` | Figure 2: walking speed and stance phase, stroke vs. age-matched able-bodied |
 | `data/raw/` | Downloaded data (not in git; see `.gitignore`) |
 | `data/metadata/participants.csv` | Output of `build_participants.py` |
 | `results/tables/` | Outputs of `compute_outcomes.py` and `preliminary_check.py` |
@@ -42,6 +44,14 @@ Run the commands from the repository root. The last three scripts take a few sec
 - **Walking speed** is computed from centre-of-mass travel per stride in the MAT files. It agrees with Supplementary Table 5 (median difference 0.003 m/s); SUBJ116 has no centre-of-mass data, so its Table 5 speed is used.
 - **Paretic side:** stroke data are already split into paretic (`Pside`) and non-paretic (`Nside`) legs; `sub_char.LesionLeft` gives the lesion side.
 - **Speed overlap is small:** only 10 of 43 stroke survivors with paretic EMG walk at or above the slowest able-bodied adult (0.80 m/s).
+
+## Figure 2: Gait of stroke survivors vs. age-matched able-bodied adults
+![Walking speed and stance phase in stroke survivors vs. age-matched able-bodied adults](results/figures/fig2_gait_stroke_vs_able_bodied.png)
+
+43 stroke survivors (paretic EMG available) vs. 43 able-bodied adults matched 1:1 by age. Boxes show median and IQR; each dot is one participant. Data: `results/tables/fig2_points.csv`.
+- **Walking speed:** median 0.38 m/s after stroke vs. 1.14 m/s able-bodied (about 3× slower).
+- **Stance phase:** median 62% of the gait cycle able-bodied, 66% on the non-paretic leg and 71% on the paretic leg.
+- **To check:** the paretic leg has the longer stance in 36 of 43 stroke survivors, the reverse of what most stroke gait studies report. Confirm in the MAT file that `P_TOnorm` and `N_TOnorm` are on the right legs (e.g. TVC36, TVC03).
 
 ## Project decision
 **GO**: we are proceeding with this research question and dataset. Tibialis anterior EMG is available in the MAT files (see Data checks).
