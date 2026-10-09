@@ -9,34 +9,28 @@ Perpetual Ogedegbe
 ## Research question
 Compared with age-matched able-bodied adults, do subacute stroke survivors show more co-contraction of knee (VL–BF, VL–ST) and ankle (TA–GAS) muscle pairs on the paretic side during walking, and does any difference remain after accounting for walking speed?
 
-## Quick start: reproduce the midterm progress check
-Works on macOS, Windows, Linux or Google Colab with Python 3.10 or newer. Needs about 10 GB of free disk space.
+## Project decision
+**GO**: we are proceeding with this research question and dataset. Tibialis anterior EMG is available in the MAT files (see Data checks).
 
-```bash
-pip install -r requirements.txt
-python src/download_data.py        # ~9 GB from Figshare into data/raw/ (skips files you already have)
-python src/build_participants.py   # -> data/metadata/participants.csv
-python src/compute_outcomes.py     # -> results/tables/outcomes_per_leg.csv, strides_per_leg.csv
-python src/preliminary_check.py    # -> results/tables/table1_*.csv, table2_*.csv, results/figures/fig1_*.png
-python src/gait_comparison.py      # -> results/tables/fig2_points.csv, results/figures/fig2_*.png
-```
-Run the commands from the repository root. The last three scripts take a few seconds each.
+## Contents
+1. [Progress update: October 9, 2026](#progress-update-october-9-2026)
+2. [How to run the analysis](#how-to-run-the-analysis)
+3. [Project background](#project-background)
+4. [Analysis plan](#analysis-plan)
+5. [Team plan](#team-plan)
+6. [Other candidate considered (not chosen)](#other-candidate-considered-not-chosen)
 
-## Repository map
-| Path | What it is |
-|---|---|
-| `src/download_data.py` | Downloads the two MAT files, their description and the paper's Supplementary Information |
-| `src/load_data.py` | Reads EMG envelopes and toe-off events per participant leg from the MAT (HDF5) files |
-| `src/build_participants.py` | One table of participants: age, sex, body size, stroke details, walking speed, EMG availability |
-| `src/compute_outcomes.py` | Co-contraction index (whole stride, stance, swing) and % of stride active, averaged per leg |
-| `src/preliminary_check.py` | Midterm check: sample and data quality (Table 1), CCI by group (Table 2), Figure 1 |
-| `src/gait_comparison.py` | Figure 2: walking speed and stance phase, stroke vs. age-matched able-bodied |
-| `data/raw/` | Downloaded data (not in git; see `.gitignore`) |
-| `data/metadata/participants.csv` | Output of `build_participants.py` |
-| `results/tables/` | Outputs of `compute_outcomes.py` and `preliminary_check.py` |
-| `results/figures/` | Figures |
+---
 
-## Data checks (October 9, 2026)
+## Progress update: October 9, 2026
+
+### What we did today
+- Built the data pipeline in `src/`: download the MAT files, build the participant table, and compute co-contraction and stance outcomes for every participant leg.
+- Checked the dataset against the paper (see [Data checks](#data-checks)).
+- Ran the midterm progress check: sample and data quality (Table 1), co-contraction by group (Table 2) and Figure 1.
+- Made Figure 2, a comparison of gait between stroke survivors and age-matched able-bodied adults.
+
+### Data checks
 - **TA is not in the Excel files**, so we use the MAT files (MATLAB v7.3 / HDF5, read with `h5py`).
 - **Fewer participants have EMG than the paper reports.** MAT files: 44 of 50 stroke survivors have any EMG (paper: 47). TVC51, TVC53 and TVC54 have none, although Supplementary Table 4 lists EMG as recorded; TVC42 has no paretic-leg EMG. 109 of 138 able-bodied adults have EMG (paper: 111); SUBJ21, SUBJ74 and SUBJ84 are also empty. Raw and normalized fields are both empty for these participants.
 - **Left TA is often missing in able-bodied adults** (usable in 59, vs 105 for right TA), so we average whichever legs are available.
@@ -45,7 +39,26 @@ Run the commands from the repository root. The last three scripts take a few sec
 - **Paretic side:** stroke data are already split into paretic (`Pside`) and non-paretic (`Nside`) legs; `sub_char.LesionLeft` gives the lesion side.
 - **Speed overlap is small:** only 10 of 43 stroke survivors with paretic EMG walk at or above the slowest able-bodied adult (0.80 m/s).
 
-## Figure 2: Gait of stroke survivors vs. age-matched able-bodied adults
+#### Data checklist
+- [x] Does the Excel file really leave out TA? Yes, so we use the MAT files.
+- [x] How the stroke files mark the affected (paretic) side: separate `Pside`/`Nside` fields; lesion side in `sub_char.LesionLeft`.
+- [x] Per-participant walking speed: computed from the MAT files and checked against Supplementary Table 5.
+- [ ] Stroke kinetics were not outlier-screened by the authors, and stroke EMG screening is not documented: plot every participant's envelopes before relying on them.
+- [ ] Check whether the C3D files hold the EMG that is missing from the MAT files (TVC51, TVC53, TVC54, TVC42 paretic; SUBJ21, SUBJ74, SUBJ84).
+- [ ] Check that the paretic and non-paretic toe-off events (`P_TOnorm`, `N_TOnorm`) are on the right legs: the paretic stance is unexpectedly longer in Figure 2 (e.g. TVC36, TVC03).
+
+### Results so far (descriptive only, no hypothesis tests yet)
+- **Table 1** (sample and data quality): `results/tables/table1_sample_and_quality.csv`
+- **Table 2** (co-contraction by group and its correlation with speed): `results/tables/table2_cci_by_group.csv`
+
+#### Figure 1: Ankle co-contraction vs. walking speed
+![Ankle (TA–GAS) co-contraction index against walking speed](results/figures/fig1_ankle_cci_vs_speed.png)
+
+Data: `results/tables/fig1_points.csv`. Made by `src/preliminary_check.py`.
+
+#### Figure 2: Gait of stroke survivors vs. age-matched able-bodied adults
+![Walking speed and stance phase in stroke survivors vs. age-matched able-bodied adults](results/figures/fig2_gait_stroke_vs_able_bodied.png)
+
 ![Walking speed and stance phase in stroke survivors vs. age-matched able-bodied adults](results/figures/fig2_gait_stroke_vs_able_bodied.png)
 
 43 stroke survivors (paretic EMG available) vs. 43 able-bodied adults matched 1:1 by age. Boxes show median and IQR; each dot is one participant. Data: `results/tables/fig2_points.csv`.
@@ -53,7 +66,7 @@ Run the commands from the repository root. The last three scripts take a few sec
 - **Stance phase:** median 62% of the gait cycle able-bodied, 66% on the non-paretic leg and 71% on the paretic leg.
 - **To check:** the paretic leg has the longer stance in 36 of 43 stroke survivors, the reverse of what most stroke gait studies report. Confirm in the MAT file that `P_TOnorm` and `N_TOnorm` are on the right legs (e.g. TVC36, TVC03).
 
-### Code for Figure 2
+##### Code for Figure 2
 **Inputs:** `data/metadata/participants.csv` (age, walking speed) and `results/tables/outcomes_per_leg.csv` (stance % per leg, from the toe-off events). Age-matching and the analysis set come from `src/preliminary_check.py`.
 
 **Run it** from the repository root, after `build_participants.py` and `compute_outcomes.py`:
@@ -173,31 +186,40 @@ if __name__ == "__main__":
 
 </details>
 
-## Project decision
-**GO**: we are proceeding with this research question and dataset. Tibialis anterior EMG is available in the MAT files (see Data checks).
+---
 
-## Team plan
-| Task | Lead | Collaborators and reviewers | What does the whole team need to understand? |
-|---|---|---|---|
-| Literature review and background research | Matthew | Perpetual (independent search for missing evidence and perspectives); Yohan (reviewer) | Why co-contraction after stroke matters clinically; what earlier studies found; why walking speed is a confounder |
-| Dataset interpretation | Matthew | Yohan (collaborator, since he will preprocess the data); Dylan (reviewer) | Who is in each group; which muscles were recorded; how EMG was processed and normalized; missing EMG; how the paretic side is labelled |
-| Dataset cleaning / preprocessing | Yohan | Matthew (participant selection rules); Perpetual (reviewer) | Inclusion/exclusion choices; how age-matching was done; how strides are averaged per participant |
-| Analysis (co-contraction, timing, statistics) | Dylan | Yohan (collaborator); Perpetual (reviewer) | How the co-contraction index and on/off timing are calculated; the three ways we handle walking speed; which tests we use and why |
-| Validation and evaluation | Perpetual | Matthew (compares values with the literature); Dylan (reviewer) | How results were checked: recalculating CCI by hand for a few participants, plotting individual participants, testing different on/off thresholds, rerunning without the 3 assisted participants |
-| Interpretation | Matthew | Perpetual and Dylan (collaborators); Yohan (reviewer) | Whether differences remain after controlling for speed; what that means for rehabilitation; limitations |
-| Documentation and reproducibility | Dylan | Everyone documents their own part; Yohan (reviewer: reruns the code from the README on a fresh computer) | How to rerun the full analysis from the raw files |
+## How to run the analysis
 
-### Decision-making
-- **Whole team:** research question, muscle pairs, how we handle walking speed, final interpretation and conclusions.
-- **Lead + reviewer:** technical choices within a task, e.g., the on/off threshold, the age-matching method and the choice of statistical test.
-- **Individual lead:** day-to-day organization of their task and code/file structure within it.
+### Quick start: reproduce the midterm progress check
+Works on macOS, Windows, Linux or Google Colab with Python 3.10 or newer. Needs about 10 GB of free disk space.
 
-### How we check each other's work
-- Every task has a reviewer who is not the lead.
-- Code changes go to GitHub with a short description, and the reviewer looks over them before we rely on the results.
+```bash
+pip install -r requirements.txt
+python src/download_data.py        # ~9 GB from Figshare into data/raw/ (skips files you already have)
+python src/build_participants.py   # -> data/metadata/participants.csv
+python src/compute_outcomes.py     # -> results/tables/outcomes_per_leg.csv, strides_per_leg.csv
+python src/preliminary_check.py    # -> results/tables/table1_*.csv, table2_*.csv, results/figures/fig1_*.png
+python src/gait_comparison.py      # -> results/tables/fig2_points.csv, results/figures/fig2_*.png
+```
+Run the commands from the repository root. The last three scripts take a few seconds each.
 
-## Project: Muscle activity during walking after stroke
+### Repository map
+| Path | What it is |
+|---|---|
+| `src/download_data.py` | Downloads the two MAT files, their description and the paper's Supplementary Information |
+| `src/load_data.py` | Reads EMG envelopes and toe-off events per participant leg from the MAT (HDF5) files |
+| `src/build_participants.py` | One table of participants: age, sex, body size, stroke details, walking speed, EMG availability |
+| `src/compute_outcomes.py` | Co-contraction index (whole stride, stance, swing) and % of stride active, averaged per leg |
+| `src/preliminary_check.py` | Midterm check: sample and data quality (Table 1), CCI by group (Table 2), Figure 1 |
+| `src/gait_comparison.py` | Figure 2: walking speed and stance phase, stroke vs. age-matched able-bodied |
+| `data/raw/` | Downloaded data (not in git; see `.gitignore`) |
+| `data/metadata/participants.csv` | Output of `build_participants.py` |
+| `results/tables/` | Outputs of `compute_outcomes.py` and `preliminary_check.py` |
+| `results/figures/` | Figures |
 
+---
+
+## Project background
 ### Problem statement
 After a stroke, damage to descending motor pathways can disrupt the normal "one muscle on, its opposite off" pattern of walking. Muscles on the affected (paretic) side may fire together (co-contraction) or at the wrong time in the gait cycle, which stiffens the joints and raises the energy cost of walking. Rehabilitation often aims to reduce this abnormal activity. However, stroke survivors also walk more slowly, and slower walking by itself changes muscle activation, even in healthy people. If we can't separate the two, we can't tell whether an abnormal pattern is a direct result of the stroke (and worth targeting in therapy) or simply a side effect of walking slowly.
 
@@ -263,15 +285,9 @@ Possible agonist/antagonist pairs: VL or RF vs. BF or ST (knee) and TA vs. GAS (
 - Each stride time-normalized to 1000 points
 - Amplitude normalized to each participant's maximum per muscle across their strides (no MVC trials)
 
-#### To check once we download the data
-- [x] Does the Excel file really leave out TA? Yes, so we use the MAT files.
-- [x] How the stroke files mark the affected (paretic) side: separate `Pside`/`Nside` fields; lesion side in `sub_char.LesionLeft`.
-- [x] Per-participant walking speed: computed from the MAT files and checked against Supplementary Table 5.
-- [ ] Stroke kinetics were not outlier-screened by the authors, and stroke EMG screening is not documented: plot every participant's envelopes before relying on them.
-- [ ] Check whether the C3D files hold the EMG that is missing from the MAT files (TVC51, TVC53, TVC54, TVC42 paretic; SUBJ21, SUBJ74, SUBJ84).
+---
 
-## Analysis plan: what we will do with the data
-
+## Analysis plan
 **1. Choose participants**
 - Stroke: the 47 participants with EMG. Analyze the paretic and non-paretic legs separately.
 - Stroke (updated after data checks): the 43 participants with paretic-leg EMG.
@@ -312,8 +328,31 @@ Possible agonist/antagonist pairs: VL or RF vs. BF or ST (knee) and TA vs. GAS (
 - All stroke participants were within 5 months of their stroke, so the results may not apply to chronic stroke.
 - Able-bodied adults walked only at their own comfortable speed, so few may walk as slowly as the stroke group.
 
-## Other candidate considered (not chosen)
+---
 
+## Team plan
+| Task | Lead | Collaborators and reviewers | What does the whole team need to understand? |
+|---|---|---|---|
+| Literature review and background research | Matthew | Perpetual (independent search for missing evidence and perspectives); Yohan (reviewer) | Why co-contraction after stroke matters clinically; what earlier studies found; why walking speed is a confounder |
+| Dataset interpretation | Matthew | Yohan (collaborator, since he will preprocess the data); Dylan (reviewer) | Who is in each group; which muscles were recorded; how EMG was processed and normalized; missing EMG; how the paretic side is labelled |
+| Dataset cleaning / preprocessing | Yohan | Matthew (participant selection rules); Perpetual (reviewer) | Inclusion/exclusion choices; how age-matching was done; how strides are averaged per participant |
+| Analysis (co-contraction, timing, statistics) | Dylan | Yohan (collaborator); Perpetual (reviewer) | How the co-contraction index and on/off timing are calculated; the three ways we handle walking speed; which tests we use and why |
+| Validation and evaluation | Perpetual | Matthew (compares values with the literature); Dylan (reviewer) | How results were checked: recalculating CCI by hand for a few participants, plotting individual participants, testing different on/off thresholds, rerunning without the 3 assisted participants |
+| Interpretation | Matthew | Perpetual and Dylan (collaborators); Yohan (reviewer) | Whether differences remain after controlling for speed; what that means for rehabilitation; limitations |
+| Documentation and reproducibility | Dylan | Everyone documents their own part; Yohan (reviewer: reruns the code from the README on a fresh computer) | How to rerun the full analysis from the raw files |
+
+### Decision-making
+- **Whole team:** research question, muscle pairs, how we handle walking speed, final interpretation and conclusions.
+- **Lead + reviewer:** technical choices within a task, e.g., the on/off threshold, the age-matching method and the choice of statistical test.
+- **Individual lead:** day-to-day organization of their task and code/file structure within it.
+
+### How we check each other's work
+- Every task has a reviewer who is not the lead.
+- Code changes go to GitHub with a short description, and the reviewer looks over them before we rely on the results.
+
+---
+
+## Other candidate considered (not chosen)
 <details>
 <summary>Sleep stages and age (Sleep-EDF Expanded)</summary>
 
