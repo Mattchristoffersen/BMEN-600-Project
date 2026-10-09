@@ -18,7 +18,7 @@ Compared with age-matched able-bodied adults, do subacute stroke survivors show 
 3. [Project background](#project-background)
 4. [Analysis plan](#analysis-plan)
 5. [Team plan](#team-plan)
-6. [Other candidate considered (not chosen)](#other-candidate-considered-not-chosen)
+
 
 ---
 
