@@ -1,0 +1,130 @@
+id,series,speed_mps,stance_pct
+SUBJ50,Able-bodied (age-matched),0.994,64.838
+SUBJ16,Able-bodied (age-matched),1.157,63.454
+SUBJ70,Able-bodied (age-matched),1.171,60.939
+SUBJ67,Able-bodied (age-matched),1.121,60.29
+SUBJ29,Able-bodied (age-matched),1.21,60.538
+SUBJ10,Able-bodied (age-matched),1.064,61.312
+SUBJ33,Able-bodied (age-matched),1.429,61.232
+SUBJ30,Able-bodied (age-matched),1.402,59.68
+SUBJ17,Able-bodied (age-matched),1.104,62.152
+SUBJ24,Able-bodied (age-matched),1.188,61.875
+SUBJ26,Able-bodied (age-matched),1.295,62.936
+SUBJ57,Able-bodied (age-matched),1.268,60.558
+SUBJ31,Able-bodied (age-matched),1.392,61.421
+SUBJ44,Able-bodied (age-matched),1.135,61.459
+SUBJ76,Able-bodied (age-matched),1.192,59.859
+SUBJ65,Able-bodied (age-matched),1.215,61.684
+SUBJ51,Able-bodied (age-matched),1.432,60.628
+SUBJ86,Able-bodied (age-matched),1.399,62.584
+SUBJ18,Able-bodied (age-matched),1.132,63.182
+SUBJ4,Able-bodied (age-matched),1.076,61.165
+SUBJ34,Able-bodied (age-matched),1.198,61.802
+SUBJ32,Able-bodied (age-matched),1.069,62.454
+SUBJ41,Able-bodied (age-matched),1.262,62.822
+SUBJ27,Able-bodied (age-matched),0.822,64.614
+SUBJ28,Able-bodied (age-matched),1.099,61.927
+SUBJ62,Able-bodied (age-matched),1.089,60.492
+SUBJ39,Able-bodied (age-matched),1.046,62.058
+SUBJ13,Able-bodied (age-matched),1.056,63.728
+SUBJ35,Able-bodied (age-matched),1.319,61.146
+SUBJ83,Able-bodied (age-matched),1.326,60.868
+SUBJ22,Able-bodied (age-matched),0.98,63.932
+SUBJ20,Able-bodied (age-matched),0.967,64.321
+SUBJ38,Able-bodied (age-matched),1.198,63.206
+SUBJ116,Able-bodied (age-matched),1.057,61.844
+SUBJ58,Able-bodied (age-matched),1.463,62.388
+SUBJ5,Able-bodied (age-matched),0.801,64.047
+SUBJ63,Able-bodied (age-matched),1.5,59.413
+SUBJ11,Able-bodied (age-matched),1.131,61.813
+SUBJ19,Able-bodied (age-matched),1.02,63.65
+SUBJ25,Able-bodied (age-matched),1.144,61.87
+SUBJ42,Able-bodied (age-matched),0.974,63.638
+SUBJ49,Able-bodied (age-matched),1.099,62.662
+SUBJ73,Able-bodied (age-matched),1.159,60.052
+TVC03,"Stroke, paretic leg",0.254,81.511
+TVC04,"Stroke, paretic leg",0.91,64.176
+TVC05,"Stroke, paretic leg",0.112,89.707
+TVC06,"Stroke, paretic leg",0.658,67.829
+TVC08,"Stroke, paretic leg",0.137,88.682
+TVC09,"Stroke, paretic leg",0.869,61.076
+TVC10,"Stroke, paretic leg",0.367,67.603
+TVC12,"Stroke, paretic leg",0.624,66.348
+TVC13,"Stroke, paretic leg",0.236,77.001
+TVC14,"Stroke, paretic leg",0.244,80.827
+TVC15,"Stroke, paretic leg",0.868,62.761
+TVC16,"Stroke, paretic leg",0.385,67.106
+TVC17,"Stroke, paretic leg",0.62,64.844
+TVC19,"Stroke, paretic leg",0.416,68.598
+TVC20,"Stroke, paretic leg",1.362,60.715
+TVC21,"Stroke, paretic leg",0.895,64.244
+TVC22,"Stroke, paretic leg",0.341,78.24
+TVC23,"Stroke, paretic leg",0.26,69.608
+TVC24,"Stroke, paretic leg",0.179,83.554
+TVC25,"Stroke, paretic leg",0.346,75.386
+TVC26,"Stroke, paretic leg",0.444,72.57
+TVC27,"Stroke, paretic leg",0.654,66.126
+TVC28,"Stroke, paretic leg",0.333,81.64
+TVC29,"Stroke, paretic leg",0.112,81.065
+TVC30,"Stroke, paretic leg",0.327,80.49
+TVC32,"Stroke, paretic leg",0.759,69.771
+TVC33,"Stroke, paretic leg",0.207,90.243
+TVC34,"Stroke, paretic leg",0.567,67.013
+TVC35,"Stroke, paretic leg",0.436,69.023
+TVC36,"Stroke, paretic leg",0.323,83.007
+TVC37,"Stroke, paretic leg",0.514,72.704
+TVC38,"Stroke, paretic leg",0.22,77.846
+TVC39,"Stroke, paretic leg",0.22,84.623
+TVC40,"Stroke, paretic leg",0.69,70.728
+TVC41,"Stroke, paretic leg",0.224,83.666
+TVC43,"Stroke, paretic leg",0.808,63.142
+TVC46,"Stroke, paretic leg",1.113,60.9
+TVC47,"Stroke, paretic leg",0.237,77.279
+TVC48,"Stroke, paretic leg",0.186,79.003
+TVC49,"Stroke, paretic leg",0.252,75.873
+TVC52,"Stroke, paretic leg",1.161,62.23
+TVC58,"Stroke, paretic leg",0.801,66.301
+TVC60,"Stroke, paretic leg",0.824,61.729
+TVC03,"Stroke, non-paretic leg",0.254,60.079
+TVC04,"Stroke, non-paretic leg",0.91,64.046
+TVC05,"Stroke, non-paretic leg",0.112,81.778
+TVC06,"Stroke, non-paretic leg",0.658,63.229
+TVC08,"Stroke, non-paretic leg",0.137,83.75
+TVC09,"Stroke, non-paretic leg",0.869,60.81
+TVC10,"Stroke, non-paretic leg",0.367,67.505
+TVC12,"Stroke, non-paretic leg",0.624,68.49
+TVC13,"Stroke, non-paretic leg",0.236,74.916
+TVC14,"Stroke, non-paretic leg",0.244,75.371
+TVC15,"Stroke, non-paretic leg",0.868,62.968
+TVC16,"Stroke, non-paretic leg",0.385,65.538
+TVC17,"Stroke, non-paretic leg",0.62,65.961
+TVC19,"Stroke, non-paretic leg",0.416,68.392
+TVC20,"Stroke, non-paretic leg",1.362,59.628
+TVC21,"Stroke, non-paretic leg",0.895,59.421
+TVC22,"Stroke, non-paretic leg",0.341,70.982
+TVC23,"Stroke, non-paretic leg",0.26,79.71
+TVC24,"Stroke, non-paretic leg",0.179,66.328
+TVC25,"Stroke, non-paretic leg",0.346,77.346
+TVC26,"Stroke, non-paretic leg",0.444,63.519
+TVC27,"Stroke, non-paretic leg",0.654,63.203
+TVC28,"Stroke, non-paretic leg",0.333,66.602
+TVC29,"Stroke, non-paretic leg",0.112,80.893
+TVC30,"Stroke, non-paretic leg",0.327,66.603
+TVC32,"Stroke, non-paretic leg",0.759,61.146
+TVC33,"Stroke, non-paretic leg",0.207,73.483
+TVC34,"Stroke, non-paretic leg",0.567,64.095
+TVC35,"Stroke, non-paretic leg",0.436,64.924
+TVC36,"Stroke, non-paretic leg",0.323,53.652
+TVC37,"Stroke, non-paretic leg",0.514,63.371
+TVC38,"Stroke, non-paretic leg",0.22,74.194
+TVC39,"Stroke, non-paretic leg",0.22,75.187
+TVC40,"Stroke, non-paretic leg",0.69,59.247
+TVC41,"Stroke, non-paretic leg",0.224,67.689
+TVC43,"Stroke, non-paretic leg",0.808,63.396
+TVC46,"Stroke, non-paretic leg",1.113,59.16
+TVC47,"Stroke, non-paretic leg",0.237,75.628
+TVC48,"Stroke, non-paretic leg",0.186,76.295
+TVC49,"Stroke, non-paretic leg",0.252,74.147
+TVC52,"Stroke, non-paretic leg",1.161,61.793
+TVC58,"Stroke, non-paretic leg",0.801,65.676
+TVC60,"Stroke, non-paretic leg",0.824,63.009
