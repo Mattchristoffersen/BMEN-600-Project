@@ -1,0 +1,148 @@
+id,series,speed_mps,cci,age_matched
+SUBJ1,Able-bodied,1.057,31.783,False
+SUBJ2,Able-bodied,0.91,47.728,False
+SUBJ3,Able-bodied,0.872,39.899,False
+SUBJ4,Able-bodied,1.076,29.007,True
+SUBJ5,Able-bodied,0.801,47.09,True
+SUBJ6,Able-bodied,1.293,28.728,False
+SUBJ7,Able-bodied,1.159,32.08,False
+SUBJ8,Able-bodied,1.156,51.352,False
+SUBJ9,Able-bodied,1.092,29.548,False
+SUBJ10,Able-bodied,1.064,34.695,True
+SUBJ11,Able-bodied,1.131,31.178,True
+SUBJ13,Able-bodied,1.056,38.768,True
+SUBJ14,Able-bodied,1.156,31.843,False
+SUBJ15,Able-bodied,1.031,42.91,False
+SUBJ16,Able-bodied,1.157,36.754,True
+SUBJ17,Able-bodied,1.104,29.814,True
+SUBJ18,Able-bodied,1.132,30.009,True
+SUBJ19,Able-bodied,1.02,21.705,True
+SUBJ20,Able-bodied,0.967,45.16,True
+SUBJ22,Able-bodied,0.98,52.592,True
+SUBJ24,Able-bodied,1.188,34.234,True
+SUBJ25,Able-bodied,1.144,20.943,True
+SUBJ26,Able-bodied,1.295,21.88,True
+SUBJ27,Able-bodied,0.822,30.988,True
+SUBJ28,Able-bodied,1.099,29.34,True
+SUBJ29,Able-bodied,1.21,40.421,True
+SUBJ30,Able-bodied,1.402,34.745,True
+SUBJ31,Able-bodied,1.392,27.973,True
+SUBJ32,Able-bodied,1.069,36.604,True
+SUBJ33,Able-bodied,1.429,36.61,True
+SUBJ34,Able-bodied,1.198,21.065,True
+SUBJ35,Able-bodied,1.319,31.366,True
+SUBJ36,Able-bodied,1.138,36.142,False
+SUBJ38,Able-bodied,1.198,39.982,True
+SUBJ39,Able-bodied,1.046,44.924,True
+SUBJ40,Able-bodied,1.178,27.145,False
+SUBJ41,Able-bodied,1.262,24.979,True
+SUBJ42,Able-bodied,0.974,41.787,True
+SUBJ44,Able-bodied,1.135,53.076,True
+SUBJ45,Able-bodied,1.4,24.867,False
+SUBJ46,Able-bodied,1.276,29.386,False
+SUBJ47,Able-bodied,1.174,42.374,False
+SUBJ49,Able-bodied,1.099,35.862,True
+SUBJ50,Able-bodied,0.994,32.004,True
+SUBJ51,Able-bodied,1.432,24.434,True
+SUBJ52,Able-bodied,1.032,42.049,False
+SUBJ53,Able-bodied,1.549,43.617,False
+SUBJ55,Able-bodied,1.046,22.628,False
+SUBJ56,Able-bodied,1.467,28.482,False
+SUBJ57,Able-bodied,1.268,34.376,True
+SUBJ58,Able-bodied,1.463,37.835,True
+SUBJ59,Able-bodied,1.068,23.01,False
+SUBJ60,Able-bodied,1.55,46.283,False
+SUBJ61,Able-bodied,1.096,37.431,False
+SUBJ62,Able-bodied,1.089,30.325,True
+SUBJ63,Able-bodied,1.5,24.462,True
+SUBJ64,Able-bodied,1.378,55.159,False
+SUBJ65,Able-bodied,1.215,33.267,True
+SUBJ66,Able-bodied,1.06,17.355,False
+SUBJ67,Able-bodied,1.121,20.398,True
+SUBJ68,Able-bodied,1.588,33.454,False
+SUBJ69,Able-bodied,1.33,27.277,False
+SUBJ70,Able-bodied,1.171,54.946,True
+SUBJ71,Able-bodied,1.34,36.163,False
+SUBJ73,Able-bodied,1.159,31.544,True
+SUBJ75,Able-bodied,1.063,35.703,False
+SUBJ76,Able-bodied,1.192,46.696,True
+SUBJ77,Able-bodied,1.179,29.664,False
+SUBJ78,Able-bodied,1.147,33.552,False
+SUBJ79,Able-bodied,1.115,32.632,False
+SUBJ80,Able-bodied,1.584,30.337,False
+SUBJ82,Able-bodied,1.522,41.438,False
+SUBJ83,Able-bodied,1.326,25.548,True
+SUBJ86,Able-bodied,1.399,47.153,True
+SUBJ87,Able-bodied,1.201,33.436,False
+SUBJ88,Able-bodied,1.2,31.528,False
+SUBJ89,Able-bodied,1.438,28.636,False
+SUBJ90,Able-bodied,1.036,40.875,False
+SUBJ91,Able-bodied,1.362,51.024,False
+SUBJ92,Able-bodied,1.189,35.278,False
+SUBJ93,Able-bodied,1.168,32.236,False
+SUBJ94,Able-bodied,1.16,45.668,False
+SUBJ96,Able-bodied,1.217,22.473,False
+SUBJ97,Able-bodied,1.345,42.353,False
+SUBJ98,Able-bodied,1.175,29.545,False
+SUBJ99,Able-bodied,1.307,48.07,False
+SUBJ100,Able-bodied,1.324,48.067,False
+SUBJ101,Able-bodied,1.288,30.032,False
+SUBJ102,Able-bodied,1.06,33.951,False
+SUBJ103,Able-bodied,1.006,31.191,False
+SUBJ104,Able-bodied,1.476,30.616,False
+SUBJ105,Able-bodied,0.974,38.065,False
+SUBJ106,Able-bodied,1.237,43.096,False
+SUBJ107,Able-bodied,1.23,31.837,False
+SUBJ108,Able-bodied,1.35,22.105,False
+SUBJ109,Able-bodied,1.214,36.556,False
+SUBJ110,Able-bodied,1.178,38.141,False
+SUBJ111,Able-bodied,1.329,38.801,False
+SUBJ112,Able-bodied,1.172,45.932,False
+SUBJ113,Able-bodied,1.182,34.457,False
+SUBJ114,Able-bodied,1.116,38.369,False
+SUBJ115,Able-bodied,1.023,39.486,False
+SUBJ116,Able-bodied,1.057,38.922,True
+SUBJ117,Able-bodied,1.226,31.403,False
+TVC03,"Stroke, paretic leg",0.254,52.146,True
+TVC04,"Stroke, paretic leg",0.91,46.069,True
+TVC05,"Stroke, paretic leg",0.112,47.195,True
+TVC06,"Stroke, paretic leg",0.658,50.006,True
+TVC08,"Stroke, paretic leg",0.137,28.553,True
+TVC09,"Stroke, paretic leg",0.869,37.814,True
+TVC10,"Stroke, paretic leg",0.367,55.622,True
+TVC12,"Stroke, paretic leg",0.624,28.799,True
+TVC13,"Stroke, paretic leg",0.236,47.247,True
+TVC14,"Stroke, paretic leg",0.244,38.06,True
+TVC15,"Stroke, paretic leg",0.868,23.95,True
+TVC16,"Stroke, paretic leg",0.385,42.044,True
+TVC17,"Stroke, paretic leg",0.62,16.843,True
+TVC19,"Stroke, paretic leg",0.416,28.206,True
+TVC20,"Stroke, paretic leg",1.362,36.128,True
+TVC21,"Stroke, paretic leg",0.895,68.439,True
+TVC22,"Stroke, paretic leg",0.341,50.005,True
+TVC23,"Stroke, paretic leg",0.26,59.251,True
+TVC24,"Stroke, paretic leg",0.179,38.286,True
+TVC25,"Stroke, paretic leg",0.346,48.494,True
+TVC26,"Stroke, paretic leg",0.444,50.769,True
+TVC27,"Stroke, paretic leg",0.654,32.626,True
+TVC28,"Stroke, paretic leg",0.333,33.175,True
+TVC29,"Stroke, paretic leg",0.112,60.544,True
+TVC30,"Stroke, paretic leg",0.327,39.962,True
+TVC32,"Stroke, paretic leg",0.759,35.148,True
+TVC33,"Stroke, paretic leg",0.207,31.467,True
+TVC34,"Stroke, paretic leg",0.567,40.95,True
+TVC35,"Stroke, paretic leg",0.436,41.992,True
+TVC36,"Stroke, paretic leg",0.323,43.717,True
+TVC37,"Stroke, paretic leg",0.514,59.616,True
+TVC38,"Stroke, paretic leg",0.22,64.187,True
+TVC39,"Stroke, paretic leg",0.22,30.103,True
+TVC40,"Stroke, paretic leg",0.69,53.269,True
+TVC41,"Stroke, paretic leg",0.224,49.365,True
+TVC43,"Stroke, paretic leg",0.808,31.127,True
+TVC46,"Stroke, paretic leg",1.113,40.434,True
+TVC47,"Stroke, paretic leg",0.237,43.518,True
+TVC48,"Stroke, paretic leg",0.186,56.186,True
+TVC49,"Stroke, paretic leg",0.252,41.558,True
+TVC52,"Stroke, paretic leg",1.161,42.804,True
+TVC58,"Stroke, paretic leg",0.801,35.839,True
+TVC60,"Stroke, paretic leg",0.824,32.055,True

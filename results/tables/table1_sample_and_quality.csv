@@ -1,0 +1,9 @@
+,Stroke,Able-bodied (all with EMG),Able-bodied (age-matched)
+Participants in dataset,50,138,—
+With EMG (paper),47,111,—
+With any EMG in MAT file,44,109,—
+Analysis set,43,104,43
+"Age, years: median (range)",68 (19–84),53 (21–86),67 (21–84)
+"Speed, m/s: median [IQR]",0.38 [0.24–0.72],1.17 [1.07–1.31],1.14 [1.07–1.27]
+Strides per leg: median,8,6,—
+Stroke at or above slowest able-bodied speed (0.80 m/s),10,—,—

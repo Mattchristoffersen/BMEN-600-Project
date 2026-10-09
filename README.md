@@ -6,8 +6,45 @@ Dylan Lam
 Yohan Min  
 Perpetual Ogedegbe  
 
+## Research question
+Compared with age-matched able-bodied adults, do subacute stroke survivors show more co-contraction of knee (VL–BF, VL–ST) and ankle (TA–GAS) muscle pairs on the paretic side during walking, and does any difference remain after accounting for walking speed?
+
+## Quick start: reproduce the midterm progress check
+Works on macOS, Windows, Linux or Google Colab with Python 3.10 or newer. Needs about 10 GB of free disk space.
+
+```bash
+pip install -r requirements.txt
+python src/download_data.py        # ~9 GB from Figshare into data/raw/ (skips files you already have)
+python src/build_participants.py   # -> data/metadata/participants.csv
+python src/compute_outcomes.py     # -> results/tables/outcomes_per_leg.csv, strides_per_leg.csv
+python src/preliminary_check.py    # -> results/tables/table1_*.csv, table2_*.csv, results/figures/fig1_*.png
+```
+Run the commands from the repository root. The last three scripts take a few seconds each.
+
+## Repository map
+| Path | What it is |
+|---|---|
+| `src/download_data.py` | Downloads the two MAT files, their description and the paper's Supplementary Information |
+| `src/load_data.py` | Reads EMG envelopes and toe-off events per participant leg from the MAT (HDF5) files |
+| `src/build_participants.py` | One table of participants: age, sex, body size, stroke details, walking speed, EMG availability |
+| `src/compute_outcomes.py` | Co-contraction index (whole stride, stance, swing) and % of stride active, averaged per leg |
+| `src/preliminary_check.py` | Midterm check: sample and data quality (Table 1), CCI by group (Table 2), Figure 1 |
+| `data/raw/` | Downloaded data (not in git; see `.gitignore`) |
+| `data/metadata/participants.csv` | Output of `build_participants.py` |
+| `results/tables/` | Outputs of `compute_outcomes.py` and `preliminary_check.py` |
+| `results/figures/` | Figures |
+
+## Data checks (October 9, 2026)
+- **TA is not in the Excel files**, so we use the MAT files (MATLAB v7.3 / HDF5, read with `h5py`).
+- **Fewer participants have EMG than the paper reports.** MAT files: 44 of 50 stroke survivors have any EMG (paper: 47). TVC51, TVC53 and TVC54 have none, although Supplementary Table 4 lists EMG as recorded; TVC42 has no paretic-leg EMG. 109 of 138 able-bodied adults have EMG (paper: 111); SUBJ21, SUBJ74 and SUBJ84 are also empty. Raw and normalized fields are both empty for these participants.
+- **Left TA is often missing in able-bodied adults** (usable in 59, vs 105 for right TA), so we average whichever legs are available.
+- **Supplementary Table 1 is in a different order from the MAT files** from SUBJ15 onward. We take age, sex and body size from the MAT file (`sub_char`), and number able-bodied participants by their MAT position (SUBJn = `Sub(n)`), which matches Supplementary Table 5 and the paper's list of missing EMG.
+- **Walking speed** is computed from centre-of-mass travel per stride in the MAT files. It agrees with Supplementary Table 5 (median difference 0.003 m/s); SUBJ116 has no centre-of-mass data, so its Table 5 speed is used.
+- **Paretic side:** stroke data are already split into paretic (`Pside`) and non-paretic (`Nside`) legs; `sub_char.LesionLeft` gives the lesion side.
+- **Speed overlap is small:** only 10 of 43 stroke survivors with paretic EMG walk at or above the slowest able-bodied adult (0.80 m/s).
+
 ## Project decision
-**GO**: we are proceeding with this research question and dataset. First check: confirm that tibialis anterior EMG is available in the file format we use.
+**GO**: we are proceeding with this research question and dataset. Tibialis anterior EMG is available in the MAT files (see Data checks).
 
 ## Team plan
 | Task | Lead | Collaborators and reviewers | What does the whole team need to understand? |
@@ -32,7 +69,7 @@ Perpetual Ogedegbe
 ## Project: Muscle activity during walking after stroke
 
 ### Problem statement
-After a stroke, damage to descending motor pathways can disrupt the normal "one muscle on, its opposite off" pattern of walking. Muscles on the affected (paretic) side may fire together (co-contraction) or at the wrong time in the gait cycle, which stiffens the joints, raises the energy cost of walking and may increase fall risk. Rehabilitation often aims to reduce this abnormal activity. However, stroke survivors also walk more slowly, and slower walking by itself changes muscle activation, even in healthy people. If we can't separate the two, we can't tell whether an abnormal pattern is a direct result of the stroke (and worth targeting in therapy) or simply a side effect of walking slowly.
+After a stroke, damage to descending motor pathways can disrupt the normal "one muscle on, its opposite off" pattern of walking. Muscles on the affected (paretic) side may fire together (co-contraction) or at the wrong time in the gait cycle, which stiffens the joints and raises the energy cost of walking. Rehabilitation often aims to reduce this abnormal activity. However, stroke survivors also walk more slowly, and slower walking by itself changes muscle activation, even in healthy people. If we can't separate the two, we can't tell whether an abnormal pattern is a direct result of the stroke (and worth targeting in therapy) or simply a side effect of walking slowly.
 
 This project uses a public gait dataset (47 stroke survivors and 111 able-bodied adults with EMG) to measure co-contraction and activation timing of knee and ankle muscle pairs during walking. We will then test whether the differences between groups remain after accounting for walking speed.
 
@@ -49,7 +86,7 @@ This project uses a public gait dataset (47 stroke survivors and 111 able-bodied
 | **H2** Activation timing | Onset, offset and % of gait cycle active (envelope > threshold, e.g. 25% of max) | VL, BF, ST, TA, GAS (each muscle) | Paretic vs. able-bodied; paretic vs. non-paretic | Mann–Whitney U / Wilcoxon signed-rank, Holm-corrected | Paretic muscles are active longer, with shifted onsets/offsets |
 | **H3** Speed | CCI and % active (from H1–H2) | Same as above | (a) Paretic vs. non-paretic leg (same speed by design)<br>(b) All participants, adjusting for speed<br>(c) Speed-matched subset | (a) Wilcoxon signed-rank<br>(b) Regression: outcome ~ group + speed + age<br>(c) Mann–Whitney U | Group difference remains after speed is accounted for (e.g. group term still significant in (b)) |
 
-All tests use one value per participant (strides averaged first). Speed comes from Supplementary Table 5 of the paper.
+All tests use one value per participant (strides averaged first). Speed is computed from the MAT files and checked against Supplementary Table 5 of the paper.
 
 ### Biomedical problem
 Stroke can damage the neural pathways that coordinate reciprocal muscle activation, so survivors may show abnormal co-contraction (agonist/antagonist muscles firing together) and mistimed activation of thigh and shank muscles on the affected side during gait — contributing to stiff, inefficient, unsafe walking. The open question is whether this reflects stroke's direct effect on motor control, or is just a byproduct of walking slower (since speed alone affects co-contraction even in healthy adults).
@@ -97,17 +134,20 @@ Possible agonist/antagonist pairs: VL or RF vs. BF or ST (knee) and TA vs. GAS (
 - Amplitude normalized to each participant's maximum per muscle across their strides (no MVC trials)
 
 #### To check once we download the data
-- [ ] Does the Excel file really leave out TA? If so, ankle co-contraction (TA vs. GAS) needs the MAT or C3D files.
-- [ ] How the stroke files mark the affected (paretic) side.
-- [ ] Per-participant walking speed (Supplementary Table 5 of the paper), needed to account for speed.
-- [ ] Stroke data were not screened for outliers in the MAT files (the authors did this for able-bodied data only).
+- [x] Does the Excel file really leave out TA? Yes, so we use the MAT files.
+- [x] How the stroke files mark the affected (paretic) side: separate `Pside`/`Nside` fields; lesion side in `sub_char.LesionLeft`.
+- [x] Per-participant walking speed: computed from the MAT files and checked against Supplementary Table 5.
+- [ ] Stroke kinetics were not outlier-screened by the authors, and stroke EMG screening is not documented: plot every participant's envelopes before relying on them.
+- [ ] Check whether the C3D files hold the EMG that is missing from the MAT files (TVC51, TVC53, TVC54, TVC42 paretic; SUBJ21, SUBJ74, SUBJ84).
 
 ## Analysis plan: what we will do with the data
 
 **1. Choose participants**
 - Stroke: the 47 participants with EMG. Analyze the paretic and non-paretic legs separately.
-- Able-bodied: the 111 with EMG. To age-match, pair each stroke participant with the closest-in-age able-bodied adult (or restrict to the same age range). Use the average of the left and right legs.
-- Sensitivity check: rerun the analysis without the 3 stroke participants who needed hand support (TVC48, TVC51, TVC54).
+- Stroke (updated after data checks): the 43 participants with paretic-leg EMG.
+- Able-bodied: the 104 with EMG for all three muscle pairs. To age-match, pair each stroke participant 1:1 with the closest-in-age able-bodied adult, without replacement (current mean age gap 0.4 years, max 6). Use the average of the available legs (left TA is often missing).
+- A leg needs at least 3 valid strides for a muscle pair.
+- Sensitivity check: rerun the analysis without TVC48 (TVC51 and TVC54, the other two hand-supported participants, have no EMG).
 
 **2. Load and organize the EMG**
 - Use the stride-normalized EMG envelopes (1000 points = one gait cycle, from heel strike to the next heel strike).
@@ -123,8 +163,8 @@ Possible agonist/antagonist pairs: VL or RF vs. BF or ST (knee) and TA vs. GAS (
 
 **4. Handle walking speed (our biggest uncertainty)**
 - **Within-person comparison:** compare the paretic and non-paretic legs of the same stroke survivor. Both legs walk at the same speed, so speed can't explain a difference between them.
-- **Statistical control:** fit a regression model, CCI ~ group + walking speed + age. Speed comes from Supplementary Table 5 of the paper.
-- **Speed-matched subset:** compare stroke survivors only with able-bodied adults who walked at similar speeds. This works only if enough slow able-bodied walkers exist, so we'll check the overlap first.
+- **Statistical control:** fit a regression model, CCI ~ group + walking speed + age. Because the groups' speeds barely overlap, also fit the speed slope within the stroke group alone (0.11–1.36 m/s).
+- **Speed-matched subset:** checked: only 10 stroke survivors walk at or above the slowest able-bodied speed (0.80 m/s), so this comparison is descriptive.
 
 **5. Statistics**
 - Each participant counts once: average their strides before testing.

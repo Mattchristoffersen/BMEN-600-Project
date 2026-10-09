@@ -1,0 +1,9 @@
+# Raw data (about 9 GB) - download with: python src/download_data.py
+data/raw/
+
+# Python and editor clutter
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.DS_Store
+.venv/
