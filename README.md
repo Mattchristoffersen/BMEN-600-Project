@@ -221,9 +221,16 @@ Run the commands from the repository root. The last three scripts take a few sec
 
 ## Project background
 ### Problem statement
-After a stroke, damage to descending motor pathways can disrupt the normal "one muscle on, its opposite off" pattern of walking. Muscles on the affected (paretic) side may fire together (co-contraction) or at the wrong time in the gait cycle, which stiffens the joints and raises the energy cost of walking. Rehabilitation often aims to reduce this abnormal activity. However, stroke survivors also walk more slowly, and slower walking by itself changes muscle activation, even in healthy people. If we can't separate the two, we can't tell whether an abnormal pattern is a direct result of the stroke (and worth targeting in therapy) or simply a side effect of walking slowly.
+**Stroke survivors** experience **abnormal co-contraction (opposing muscles firing together) and mistimed muscle activation on their affected side during walking**, which matters because **it stiffens the joints and raises the energy cost of walking, making it a common target in gait rehabilitation**.
 
-This project uses a public gait dataset (47 stroke survivors and 111 able-bodied adults with EMG) to measure co-contraction and activation timing of knee and ankle muscle pairs during walking. We will then test whether the differences between groups remain after accounting for walking speed.
+Previous research has shown **that co-contraction after stroke varies widely between individuals and is not consistently higher than in healthy adults [1], and that walking speed itself changes muscle co-activation [2]**, but **whether paretic-side co-contraction and timing differences remain once walking speed is accounted for** remains unresolved. Stroke survivors walk more slowly than healthy adults (0.93 vs. 1.40 m/s in [1]), and earlier comparisons did not speed-match their groups [1].
+
+**Our approach:** use a public gait dataset (47 stroke survivors and 111 able-bodied adults with EMG [3]) to measure co-contraction and activation timing of knee and ankle muscle pairs, and test whether group differences remain after controlling for walking speed.
+
+#### References
+1. Banks CL, Huang HJ, Little VL, Patten C. Electromyography exposes heterogeneity in muscle co-contraction following stroke. *Front Neurol*. 2017;8:699. https://doi.org/10.3389/fneur.2017.00699
+2. *[To add: a study showing walking speed changes co-contraction in healthy adults; candidate: "Muscle Co-Activation around the Knee during Different Walking Speeds in Healthy Females", https://pmc.ncbi.nlm.nih.gov/articles/PMC7863926/ — check its findings before citing]*
+3. Van Criekinge T, et al. A full-body motion capture gait dataset of 138 able-bodied adults across the life span and 50 stroke survivors. *Sci Data*. 2023. https://doi.org/10.1038/s41597-023-02767-y
 
 ### Hypotheses
 1. **Co-contraction:** The paretic leg shows more co-contraction at the knee and ankle than age-matched able-bodied adults and than the non-paretic leg.
