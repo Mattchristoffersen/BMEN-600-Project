@@ -1,0 +1,7 @@
+pair,leg,comparison,n_stroke,n_ref,stroke_median_iqr,ref_median_iqr,HL_diff,ci_low,ci_high,rank_biserial,U,p,p_holm
+VL-BF (knee),paretic,paretic vs age-matched AB,42,43,64.4 [57.5-69.1],63.4 [54.4-67.2],1.4315,-2.3901,4.9346,-0.0997,993.0,0.4315,0.8629
+VL-ST (knee),paretic,paretic vs age-matched AB,42,43,62.1 [58.3-68.1],60.2 [56.4-68.9],0.9527,-2.1714,4.1953,-0.0797,975.0,0.5297,0.8629
+TA-GAS (ankle),paretic,paretic vs age-matched AB,43,43,42.0 [34.2-50.0],34.2 [29.2-39.5],8.073,3.616,12.5,-0.4246,1317.0,0.0007,0.0021
+VL-BF (knee),non-paretic,non-paretic vs age-matched AB,43,43,65.4 [61.4-70.4],63.4 [54.4-67.2],3.7395,0.151,7.0551,-0.2558,1161.0,0.0415,0.083
+VL-ST (knee),non-paretic,non-paretic vs age-matched AB,43,43,61.4 [56.5-65.0],60.2 [56.4-68.9],-0.5975,-4.41,2.7225,0.0416,886.0,0.7428,0.7428
+TA-GAS (ankle),non-paretic,non-paretic vs age-matched AB,42,43,44.4 [40.8-55.2],34.2 [29.2-39.5],12.5683,8.4905,17.2361,-0.6711,1509.0,0.0,0.0

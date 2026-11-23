@@ -21,6 +21,7 @@ ROOT = Path(__file__).resolve().parents[1]
 TABLES = ROOT / "results" / "tables"
 PAIRS = {"VL_BF": ("VL", "BF"), "VL_ST": ("VL", "ST"), "TA_GAS": ("TA", "GAS")}
 ON_THRESHOLD = 0.25  # muscle counted "on" above 25% of its maximum (sensitivity: 0.15, 0.35)
+COACTIVE_THRESHOLDS = (15, 25, 35)  # % of each muscle's maximum, for pct_coactive_<pair>_<thr>
 
 
 def cci(a: np.ndarray, b: np.ndarray) -> float:
@@ -55,6 +56,15 @@ def leg_outcomes(leg: dict) -> tuple[dict, dict]:
         valid = emg[m][~np.isnan(emg[m]).any(axis=1)]
         out[f"pct_active_{m}"] = (100 * (valid > ON_THRESHOLD).mean(axis=1).mean()
                                   if len(valid) else np.nan)
+
+    # Timing: % of the stride both muscles of a pair are "on" together, at each threshold
+    for name, (m1, m2) in PAIRS.items():
+        n = min(emg[m1].shape[0], emg[m2].shape[0])  # muscles can hold different stride counts
+        a, b = emg[m1][:n], emg[m2][:n]
+        ok = ~(np.isnan(a).any(axis=1) | np.isnan(b).any(axis=1))
+        for thr in COACTIVE_THRESHOLDS:
+            both = (a[ok] > thr / 100) & (b[ok] > thr / 100)
+            out[f"pct_coactive_{name}_{thr}"] = 100 * both.mean(axis=1).mean() if ok.any() else np.nan
     stance_pct = toe_off[np.isfinite(toe_off)] / 10.0
     out["stance_pct"] = stance_pct.mean() if len(stance_pct) else np.nan
     return counts, out

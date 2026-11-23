@@ -1,0 +1,22 @@
+setting,pair,n_stroke,HL_P_vs_AB,ci_low,ci_high,p_holm_P_vs_AB,median_P_minus_N,p_holm_P_vs_N
+main (min 3 strides),VL-BF (knee),42,1.4315,-2.3901,4.9346,0.8629,0.0945,0.3657
+main (min 3 strides),VL-ST (knee),42,0.9527,-2.1714,4.1953,0.8629,1.9265,0.3657
+main (min 3 strides),TA-GAS (ankle),43,8.073,3.616,12.5,0.0021,-4.4825,0.034
+min 1 stride,VL-BF (knee),43,1.9025,-1.996,5.6255,0.584,0.185,0.4689
+min 1 stride,VL-ST (knee),43,1.2595,-1.8075,4.4922,0.584,2.158,0.2613
+min 1 stride,TA-GAS (ankle),43,8.073,3.616,12.5,0.0021,-5.021,0.0206
+min 5 strides,VL-BF (knee),36,0.028,-4.1253,3.8545,1.0,-2.403,0.1804
+min 5 strides,VL-ST (knee),36,-0.7352,-4.6815,2.2155,1.0,1.9265,0.2087
+min 5 strides,TA-GAS (ankle),36,8.1358,3.365,12.8811,0.0045,-4.4825,0.094
+drop TVC48 (hand-held),VL-BF (knee),41,1.0548,-3.0835,4.7641,1.0,0.185,0.5035
+drop TVC48 (hand-held),VL-ST (knee),41,0.7777,-2.5611,4.2535,1.0,1.695,0.5035
+drop TVC48 (hand-held),TA-GAS (ankle),42,7.613,3.1189,12.1641,0.0043,-3.944,0.0556
+"co-active %, threshold 15%",VL-BF (knee),42,11.223,5.5944,16.7303,0.0004,,
+"co-active %, threshold 15%",VL-ST (knee),42,10.2128,5.8082,15.4574,0.0004,,
+"co-active %, threshold 15%",TA-GAS (ankle),43,3.272,0.2417,7.577,0.0343,,
+"co-active %, threshold 25%",VL-BF (knee),42,3.8625,0.1,7.5975,0.0515,,
+"co-active %, threshold 25%",VL-ST (knee),42,5.363,1.7594,8.9205,0.0171,,
+"co-active %, threshold 25%",TA-GAS (ankle),43,0.687,0.0195,2.173,0.0515,,
+"co-active %, threshold 35%",VL-BF (knee),42,0.4405,-1.6405,2.417,0.6957,,
+"co-active %, threshold 35%",VL-ST (knee),42,1.3438,-0.806,3.5575,0.5248,,
+"co-active %, threshold 35%",TA-GAS (ankle),43,0.14,0.0,0.633,0.1185,,
