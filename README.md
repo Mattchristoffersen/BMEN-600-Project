@@ -47,7 +47,7 @@ Compared with age-matched able-bodied adults, do subacute stroke survivors show 
 - [ ] Check whether the C3D files hold the EMG that is missing from the MAT files (TVC51, TVC53, TVC54, TVC42 paretic; SUBJ21, SUBJ74, SUBJ84).
 - [x] Check that the paretic and non-paretic toe-off events (`P_TOnorm`, `N_TOnorm`) are on the right legs (`src/check_leg_labels.py`). Each leg's toe-off events match its own toe marker (median difference 0.8% of the stride for P, 1.3% for N), so the events belong to the right foot. **But the leg labelled "paretic" shows the usual non-paretic pattern:** it has the longer stance in 41 of 50 survivors and more swing knee flexion in 40 of 50 (both, 38 of 50). The lesion side in `sub_char` agrees with Supplementary Table 2, and the markers are stored in one mirrored frame, so the physical side can't be checked from the files. The P/N labels may be swapped; results are reported as labelled, with both legs compared to controls. Next step: ask the dataset authors.
 
-### Results so far (descriptive only, no hypothesis tests yet)
+### Midterm results from October 9 (descriptive only; final statistics are in `results/tables/stats_*.csv`)
 - **Table 1** (sample and data quality): `results/tables/table1_sample_and_quality.csv`
 - **Table 2** (co-contraction by group and its correlation with speed): `results/tables/table2_cci_by_group.csv`
 
@@ -59,12 +59,10 @@ Data: `results/tables/fig1_points.csv`. Made by `src/preliminary_check.py`.
 #### Figure 2: Gait of stroke survivors vs. age-matched able-bodied adults
 ![Walking speed and stance phase in stroke survivors vs. age-matched able-bodied adults](results/figures/fig2_gait_stroke_vs_able_bodied.png)
 
-![Walking speed and stance phase in stroke survivors vs. age-matched able-bodied adults](results/figures/fig2_gait_stroke_vs_able_bodied.png)
-
 43 stroke survivors (paretic EMG available) vs. 43 able-bodied adults matched 1:1 by age. Boxes show median and IQR; each dot is one participant. Data: `results/tables/fig2_points.csv`.
 - **Walking speed:** median 0.38 m/s after stroke vs. 1.14 m/s able-bodied (about 3× slower).
 - **Stance phase:** median 62% of the gait cycle able-bodied, 66% on the non-paretic leg and 71% on the paretic leg.
-- **To check:** the paretic leg has the longer stance in 36 of 43 stroke survivors, the reverse of what most stroke gait studies report. Confirm in the MAT file that `P_TOnorm` and `N_TOnorm` are on the right legs (e.g. TVC36, TVC03).
+- **Leg-label check:** the paretic leg has the longer stance in 36 of 43 stroke survivors, the reverse of what most stroke gait studies report. The toe-off events are on the right legs, but the paretic and non-paretic labels may be swapped (see the data checklist above).
 
 ##### Code for Figure 2
 **Inputs:** `data/metadata/participants.csv` (age, walking speed) and `results/tables/outcomes_per_leg.csv` (stance % per leg, from the toe-off events). Age-matching and the analysis set come from `src/preliminary_check.py`.
