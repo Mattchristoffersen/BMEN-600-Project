@@ -9,15 +9,28 @@ Perpetual Ogedegbe
 ## Research question
 Compared with age-matched able-bodied adults, do subacute stroke survivors show more co-contraction of knee (VL–BF, VL–ST) and ankle (TA–GAS) muscle pairs on the paretic side during walking, and does any difference remain after accounting for walking speed?
 
-## Project decision
-**GO**: we are proceeding with this research question and dataset. Tibialis anterior EMG is available in the MAT files (see Data checks).
+## Final report outputs
+Every table and figure in the final report is made by a script in `src/`. Run the scripts in the order given in [How to run the analysis](#how-to-run-the-analysis).
+
+| In the final report | Script | Output file(s) |
+|---|---|---|
+| Table 1: sample, EMG availability and walking speed | `src/preliminary_check.py` | `results/tables/table1_sample_and_quality.csv` |
+| Table 2: CCI by group and the differences used to answer the research question | `src/analysis_stats.py` | `results/tables/stats_primary.csv` (paretic and non-paretic vs age-matched), `stats_within_person.csv`, `stats_speed_matched.csv`, `stats_regression.csv` |
+| Figure 1: CCI by group for each muscle pair | `src/make_figures.py` | `results/figures/fig3_cci_by_group.png` |
+| Figure 2: CCI against walking speed | `src/make_figures.py` | `results/figures/fig5_cci_vs_speed.png` |
+| Secondary outcomes (stance, swing, co-activation timing) | `src/analysis_stats.py` | `results/tables/stats_secondary.csv` |
+| Sensitivity analyses | `src/analysis_stats.py` | `results/tables/stats_sensitivity.csv` |
+| Leg-label check | `src/check_leg_labels.py` | `results/tables/leg_label_check.csv` |
+
+**Graded version.** The commit ID of the version graded with the final report is given on the report's title page and in its Data and Code Availability statement. To run that exact version, clone the repository and run `git checkout <commit ID>`.
 
 ## Contents
-1. [Progress update: October 9, 2026](#progress-update-october-9-2026)
-2. [How to run the analysis](#how-to-run-the-analysis)
-3. [Project background](#project-background)
-4. [Analysis plan](#analysis-plan)
-5. [Team plan](#team-plan)
+1. [Final report outputs](#final-report-outputs)
+2. [Progress update: October 9, 2026](#progress-update-october-9-2026)
+3. [How to run the analysis](#how-to-run-the-analysis)
+4. [Project background](#project-background)
+5. [Analysis plan](#analysis-plan)
+6. [Team plan](#team-plan)
 
 
 ---
@@ -51,12 +64,12 @@ Compared with age-matched able-bodied adults, do subacute stroke survivors show 
 - **Table 1** (sample and data quality): `results/tables/table1_sample_and_quality.csv`
 - **Table 2** (co-contraction by group and its correlation with speed): `results/tables/table2_cci_by_group.csv`
 
-#### Figure 1: Ankle co-contraction vs. walking speed
+#### Midterm Figure 1: Ankle co-contraction vs. walking speed
 ![Ankle (TA–GAS) co-contraction index against walking speed](results/figures/fig1_ankle_cci_vs_speed.png)
 
 Data: `results/tables/fig1_points.csv`. Made by `src/preliminary_check.py`.
 
-#### Figure 2: Gait of stroke survivors vs. age-matched able-bodied adults
+#### Midterm Figure 2: Gait of stroke survivors vs. age-matched able-bodied adults
 ![Walking speed and stance phase in stroke survivors vs. age-matched able-bodied adults](results/figures/fig2_gait_stroke_vs_able_bodied.png)
 
 43 stroke survivors (paretic EMG available) vs. 43 able-bodied adults matched 1:1 by age. Boxes show median and IQR; each dot is one participant. Data: `results/tables/fig2_points.csv`.
@@ -64,7 +77,7 @@ Data: `results/tables/fig1_points.csv`. Made by `src/preliminary_check.py`.
 - **Stance phase:** median 62% of the gait cycle able-bodied, 66% on the non-paretic leg and 71% on the paretic leg.
 - **Leg-label check:** the paretic leg has the longer stance in 36 of 43 stroke survivors, the reverse of what most stroke gait studies report. The toe-off events are on the right legs, but the paretic and non-paretic labels may be swapped (see the data checklist above).
 
-##### Code for Figure 2
+##### Code for midterm Figure 2
 **Inputs:** `data/metadata/participants.csv` (age, walking speed) and `results/tables/outcomes_per_leg.csv` (stance % per leg, from the toe-off events). Age-matching and the analysis set come from `src/preliminary_check.py`.
 
 **Run it** from the repository root, after `build_participants.py` and `compute_outcomes.py`:
@@ -188,7 +201,7 @@ if __name__ == "__main__":
 
 ## How to run the analysis
 
-### Quick start: reproduce the midterm progress check
+### Quick start: reproduce every result
 Works on macOS, Windows, Linux or Google Colab with Python 3.10 or newer. Needs about 10 GB of free disk space.
 
 ```bash
@@ -196,13 +209,13 @@ pip install -r requirements.txt
 python src/download_data.py        # ~9 GB from Figshare into data/raw/ (skips files you already have)
 python src/build_participants.py   # -> data/metadata/participants.csv
 python src/compute_outcomes.py     # -> results/tables/outcomes_per_leg.csv, strides_per_leg.csv
-python src/preliminary_check.py    # -> results/tables/table1_*.csv, table2_*.csv, results/figures/fig1_*.png
-python src/gait_comparison.py      # -> results/tables/fig2_points.csv, results/figures/fig2_*.png
+python src/preliminary_check.py    # -> report Table 1 (table1_*.csv), plus midterm table2_*.csv and fig1_*.png
 python src/check_leg_labels.py     # -> results/tables/leg_label_check.csv (P/N leg-label check)
-python src/analysis_stats.py       # -> results/tables/stats_*.csv (primary result, speed analyses, sensitivity)
-python src/make_figures.py         # -> results/figures/fig3_*.png, fig4_*.png, fig5_*.png
+python src/analysis_stats.py       # -> report Table 2 and all statistics (results/tables/stats_*.csv)
+python src/make_figures.py         # -> report Figures 1 and 2 (fig3_*.png, fig5_*.png), plus fig4_*.png
+python src/gait_comparison.py      # optional: midterm Figure 2 only, not used in the final report
 ```
-Run the commands from the repository root. `analysis_stats.py` takes about a minute (5000 bootstrap resamples per comparison); the others take a few seconds after the MAT files are read.
+Every command except the last one is needed to reproduce the final report. Run the commands from the repository root. `analysis_stats.py` takes about a minute (5000 bootstrap resamples per comparison); the others take a few seconds after the MAT files are read.
 
 ### Repository map
 | Path | What it is |
@@ -211,14 +224,14 @@ Run the commands from the repository root. `analysis_stats.py` takes about a min
 | `src/load_data.py` | Reads EMG envelopes and toe-off events per participant leg from the MAT (HDF5) files |
 | `src/build_participants.py` | One table of participants: age, sex, body size, stroke details, walking speed, EMG availability |
 | `src/compute_outcomes.py` | Co-contraction index (whole stride, stance, swing), % of stride active, and % of stride both muscles of a pair are co-active (15/25/35% thresholds), averaged per leg |
-| `src/preliminary_check.py` | Midterm check: sample and data quality (Table 1), CCI by group (Table 2), Figure 1 |
-| `src/gait_comparison.py` | Figure 2: walking speed and stance phase, stroke vs. age-matched able-bodied |
+| `src/preliminary_check.py` | Builds the analysis set and age-matching. Makes report Table 1 (sample and data quality), plus midterm Table 2 and midterm Figure 1 |
+| `src/gait_comparison.py` | Midterm Figure 2 only (walking speed and stance phase). Not used in the final report |
 | `src/check_leg_labels.py` | Data check: toe-off events vs toe markers, stance and swing knee flexion per leg |
-| `src/analysis_stats.py` | **Primary result**: paretic and non-paretic legs vs age-matched (Mann-Whitney, Hodges-Lehmann, bootstrap CI, Holm); speed handled 3 ways (within person, speed-matched subset, regression); secondary outcomes; sensitivity checks |
-| `src/make_figures.py` | Figure 3 (CCI by group), Figure 4 (all effects with 95% CIs), Figure 5 (CCI vs speed, all pairs) |
+| `src/analysis_stats.py` | **Primary result and report Table 2**: paretic and non-paretic legs vs age-matched (Mann-Whitney, Hodges-Lehmann, bootstrap CI, Holm); speed handled 3 ways (within person, speed-matched subset, regression); secondary outcomes; sensitivity checks |
+| `src/make_figures.py` | Report Figure 1 (`fig3_cci_by_group.png`), report Figure 2 (`fig5_cci_vs_speed.png`) and an extra plot of every effect with its 95% CI (`fig4_effects_forest.png`) |
 | `data/raw/` | Downloaded data (not in git; see `.gitignore`) |
 | `data/metadata/participants.csv` | Output of `build_participants.py` |
-| `results/tables/` | Outputs of `compute_outcomes.py` and `preliminary_check.py` |
+| `results/tables/` | Tables written by the scripts above (see [Final report outputs](#final-report-outputs)) |
 | `results/figures/` | Figures |
 
 ---
@@ -233,7 +246,7 @@ Previous research has shown **that co-contraction after stroke varies widely bet
 
 #### References
 1. Banks CL, Huang HJ, Little VL, Patten C. Electromyography exposes heterogeneity in muscle co-contraction following stroke. *Front Neurol*. 2017;8:699. https://doi.org/10.3389/fneur.2017.00699
-2. *[To add: a study showing walking speed changes co-contraction in healthy adults; candidate: "Muscle Co-Activation around the Knee during Different Walking Speeds in Healthy Females", https://pmc.ncbi.nlm.nih.gov/articles/PMC7863926/ — check its findings before citing]*
+2. Akl AR, Gonçalves P, Fonseca P, Hassan A, Vilas-Boas JP, Conceição F. Muscle co-activation around the knee during different walking speeds in healthy females. *Sensors*. 2021;21(3):677. https://doi.org/10.3390/s21030677
 3. Van Criekinge T, et al. A full-body motion capture gait dataset of 138 able-bodied adults across the life span and 50 stroke survivors. *Sci Data*. 2023. https://doi.org/10.1038/s41597-023-02767-y
 
 ### Hypotheses
